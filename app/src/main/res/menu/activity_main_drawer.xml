@@ -4,15 +4,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_all_media"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_all_media_black_24dp"
             android:title="All" />
         <item
             android:id="@+id/nav_tv_shows"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_tv_black_24dp"
             android:title="TV Shows" />
         <item
             android:id="@+id/nav_movies"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_movie_black_24dp"
             android:title="Movies" />
     </group>
 
@@ -25,12 +25,12 @@
 
             <item
                 android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Settings" />
 
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_info_black_24dp"
                 android:title="About" />
         </menu>
     </item>
