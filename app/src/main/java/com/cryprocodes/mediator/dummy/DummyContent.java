@@ -28,17 +28,22 @@ public class DummyContent {
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            addItem(createDummyItem());
         }
     }
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.title, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    private static DummyItem createDummyItem() {
+        return new DummyItem(
+                "Game Of Thrones S07E05 RARBG 1080p 5.1CH",
+                "8.4",
+                "10/8/2017",
+                "https://image.tmdb.org/t/p/original/gwPSoYUHAKmdyVywgLpKKA4BjRr.jpg"
+        );
     }
 
     private static String makeDetails(int position) {
@@ -54,19 +59,21 @@ public class DummyContent {
      * A dummy item representing a piece of content.
      */
     public static class DummyItem {
-        public final String id;
-        public final String content;
-        public final String details;
+        public final String title;
+        public final String rating;
+        public final String releaseDate;
+        public final String posterUrl;
 
-        public DummyItem(String id, String content, String details) {
-            this.id = id;
-            this.content = content;
-            this.details = details;
+        public DummyItem(String title, String rating, String releaseDate, String posterUrl) {
+            this.title = title;
+            this.rating = rating;
+            this.releaseDate = releaseDate;
+            this.posterUrl = posterUrl;
         }
 
         @Override
         public String toString() {
-            return content;
+            return title;
         }
     }
 }
