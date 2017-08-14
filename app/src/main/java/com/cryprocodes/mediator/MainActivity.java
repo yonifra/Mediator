@@ -3,25 +3,36 @@ package com.cryprocodes.mediator;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.cryprocodes.mediator.dummy.DummyContent;
+import com.cryprocodes.mediator.Models.BaseMediaItem;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener, MediaItemFragment.OnListFragmentInteractionListener {
+
+    private static final String TV_SHOWS_FEED_URL = "http://www.scnsrc.me/category/tv/feed/";
+    private static final String MOVIES_FEED_URL = "http://www.scnsrc.me/category/films/feed/";
+    private static final String ALL_FEED_URL = "http://feeds.feedburner.com/scnsrc/rss?format=xml";
+    public static String CURRENT_RSS_FEED = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,39 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public static String getAndroidPitRssFeed() throws IOException {
+        InputStream in = null;
+        String rssFeed = null;
+
+        try {
+            URL url;
+
+            if (CURRENT_RSS_FEED == null) {
+                url = new URL(ALL_FEED_URL);
+            } else {
+                url = new URL(CURRENT_RSS_FEED);
+            }
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            in = conn.getInputStream();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            for (int count; (count = in.read(buffer)) != -1; ) {
+                out.write(buffer, 0, count);
+            }
+            byte[] response = out.toByteArray();
+            rssFeed = new String(response, "UTF-8");
+        } catch (Exception ex) {
+            rssFeed = null;
+            Log.e("GetRSSFeed", ex.getMessage());
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+        return rssFeed;
     }
 
     @Override
@@ -128,7 +172,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(BaseMediaItem item) {
 
     }
 }
