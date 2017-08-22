@@ -22,16 +22,17 @@
             <ImageView
                 android:id="@+id/itemPosterImageView"
                 android:layout_width="80sp"
-                tools:src="@color/colorPrimary"
-                android:layout_height="120sp"/>
+                android:layout_height="120sp"
+                android:layout_gravity="center_vertical"
+                tools:src="@color/colorPrimary" />
 
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16sp"
-                android:layout_marginLeft="16sp"
-                android:layout_marginTop="8sp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8sp"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:layout_marginTop="8sp"
                 android:columnCount="1">
 
                 <TextView
@@ -40,6 +41,13 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                     tools:text="Game Of Thrones S07E05 RARBG 1080p 5.1CH" />
+
+                <TextView
+                    android:id="@+id/text_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    tools:text="Jon and his team go beyond the wall to capture a wight. Daenerys has to make a tough decision." />
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -55,16 +63,17 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/ic_star_black_24dp"
-                            android:layout_gravity="center_vertical" android:layout_marginRight="3dp"/>
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="3dp"
+                            android:src="@drawable/ic_star_black_24dp" />
 
-                    <TextView
-                        android:id="@+id/itemRatingTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        tools:text="8.5" />
+                        <TextView
+                            android:id="@+id/itemRatingTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            tools:text="8.5" />
                     </LinearLayout>
 
                     <TextView
