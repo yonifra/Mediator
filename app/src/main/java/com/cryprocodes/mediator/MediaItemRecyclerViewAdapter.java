@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cryprocodes.mediator.MediaItemFragment.OnListFragmentInteractionListener;
+import com.cryprocodes.mediator.Models.BaseMediaItem;
 import com.cryprocodes.mediator.dummy.DummyContent.DummyItem;
 import com.squareup.picasso.Picasso;
 
@@ -21,11 +22,11 @@ import java.util.List;
  */
 public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<BaseMediaItem> mValues;
     private final OnListFragmentInteractionListener mListener;
     private Context context;
 
-    public MediaItemRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MediaItemRecyclerViewAdapter(List<BaseMediaItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -40,10 +41,12 @@ public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItem
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.itemRatingTextView.setText(mValues.get(position).rating);
-        holder.itemTitleTextView.setText(mValues.get(position).title);
-        holder.itemReleaseDateTextView.setText(mValues.get(position).releaseDate);
+        BaseMediaItem item = mValues.get(position);
+        holder.mItem = item;
+        holder.itemRatingTextView.setText(item.rating);
+        holder.itemTitleTextView.setText(item.rawTitle);
+        holder.itemReleaseDateTextView.setText(item.torrentReleaseDate);
+        holder.itemDescriptionTextView.setText(item.plot);
 
         Picasso.with(context)
                 .load(mValues.get(position).posterUrl)
@@ -74,7 +77,8 @@ public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItem
         public final TextView itemReleaseDateTextView;
         public final ImageView itemPosterImageView;
         public final TextView itemRatingTextView;
-        public DummyItem mItem;
+        public final TextView itemDescriptionTextView;
+        public BaseMediaItem mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -83,6 +87,7 @@ public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItem
             itemReleaseDateTextView = (TextView) view.findViewById(R.id.itemReleaseDateTextView);
             itemPosterImageView = (ImageView) view.findViewById(R.id.itemPosterImageView);
             itemRatingTextView = (TextView) view.findViewById(R.id.itemRatingTextView);
+            itemDescriptionTextView = (TextView) view.findViewById(R.id.text_description);
         }
 
         @Override

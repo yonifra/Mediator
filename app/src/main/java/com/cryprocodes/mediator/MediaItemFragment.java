@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cryprocodes.mediator.Models.BaseMediaItem;
+import com.cryprocodes.mediator.Models.RssFeedRetrieverAsync;
 import com.cryprocodes.mediator.dummy.DummyContent;
 import com.cryprocodes.mediator.dummy.DummyContent.DummyItem;
 
@@ -70,7 +72,9 @@ public class MediaItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MediaItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            RssFeedRetrieverAsync feedReader = new RssFeedRetrieverAsync(this.getActivity());
+            List<BaseMediaItem> list = feedReader.getMovies(20);
+            recyclerView.setAdapter(new MediaItemRecyclerViewAdapter(list, mListener));
         }
         return view;
     }
@@ -105,6 +109,6 @@ public class MediaItemFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(BaseMediaItem item);
     }
 }
