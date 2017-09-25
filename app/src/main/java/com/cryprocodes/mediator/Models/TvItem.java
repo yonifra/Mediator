@@ -5,6 +5,7 @@ public class TvItem extends BaseMediaItem {
     public TvItem() {
         super();
         this.category = Category.TV;
+        this.posterUrl = "../../res/drawable/tv.jpg";
     }
 
     public TvItem(BaseMediaItem item) {

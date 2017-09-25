@@ -19,8 +19,8 @@ public class PatternPair<L,R> {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof PatternPair)) return false;
-        PatternPair pairo = (PatternPair) o;
-        return this.key.equals(pairo.getKey()) &&
-                this.pattern.equals(pairo.getPattern());
+        PatternPair pair = (PatternPair) o;
+        return this.key.equals(pair.getKey()) &&
+                this.pattern.equals(pair.getPattern());
     }
 }

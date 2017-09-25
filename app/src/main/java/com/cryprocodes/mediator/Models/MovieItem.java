@@ -4,6 +4,7 @@ public class MovieItem extends BaseMediaItem {
     public MovieItem() {
         super();
         this.category = Category.MOVIE;
+        this.posterUrl = "../../res/drawable/movie.jpg";
     }
 
     public MovieItem(BaseMediaItem baseItem) {
