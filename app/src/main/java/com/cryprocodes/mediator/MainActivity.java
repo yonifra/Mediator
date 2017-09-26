@@ -1,5 +1,6 @@
 package com.cryprocodes.mediator;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -173,6 +174,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(BaseMediaItem item) {
+        Bundle mediaItemBundle = new Bundle();
+        mediaItemBundle.putString("title", item.rawTitle);
+        mediaItemBundle.putString("plot", item.plot);
+        mediaItemBundle.putString("imdbId", item.imdbId);
+        mediaItemBundle.putString("posterUrl", item.posterUrl);
 
+        Intent i = new Intent(this, MediaItemActivity.class);
+        i.putExtras(mediaItemBundle);
+        startActivity(i);
     }
 }
