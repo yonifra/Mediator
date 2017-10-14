@@ -278,7 +278,7 @@ public class RssFeedRetrieverAsync extends AsyncTask<Void, Void, List<BaseMediaI
                 return;
             }
 
-            RecyclerView recyclerView = (RecyclerView) mCallingActivity.findViewById(R.id.list);
+            RecyclerView recyclerView = mCallingActivity.findViewById(R.id.recyclerView);
 
             if (recyclerView != null) {
                 recyclerView.setAdapter(new MediaItemRecyclerViewAdapter(itemsToShow, null));

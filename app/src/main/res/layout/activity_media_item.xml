@@ -11,25 +11,32 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Title"
+        android:textAlignment="viewStart"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
+        app:layout_constraintTop_toTopOf="@+id/posterImageView" />
 
     <TextView
         android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Description"
-        tools:layout_editor_absoluteX="103dp"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toEndOf="@+id/posterImageView"
         tools:layout_editor_absoluteY="57dp" />
 
     <ImageView
         android:id="@+id/posterImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/movie"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/movie" />
 </android.support.constraint.ConstraintLayout>
