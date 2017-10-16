@@ -46,13 +46,13 @@ public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItem
         holder.itemRatingTextView.setText(item.rating);
         holder.itemTitleTextView.setText(item.rawTitle);
         holder.itemReleaseDateTextView.setText(item.torrentReleaseDate);
-        holder.itemDescriptionTextView.setText(item.plot);
+     //   holder.itemDescriptionTextView.setText(item.plot);
 
-        Picasso.with(context)
-                .load(mValues.get(position).posterUrl)
-                .resize(80, 120)
-                .centerCrop()
-                .into(holder.itemPosterImageView);
+//        Picasso.with(context)
+//                .load(mValues.get(position).posterUrl)
+//                .resize(80, 120)
+//                .centerCrop()
+//                .into(holder.itemPosterImageView);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,9 +75,9 @@ public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItem
         public final View mView;
         public final TextView itemTitleTextView;
         public final TextView itemReleaseDateTextView;
-        public final ImageView itemPosterImageView;
+       // public final ImageView itemPosterImageView;
         public final TextView itemRatingTextView;
-        public final TextView itemDescriptionTextView;
+     //   public final TextView itemDescriptionTextView;
         public BaseMediaItem mItem;
 
         public ViewHolder(View view) {
@@ -85,9 +85,9 @@ public class MediaItemRecyclerViewAdapter extends RecyclerView.Adapter<MediaItem
             mView = view;
             itemTitleTextView = (TextView) view.findViewById(R.id.itemNameTextView);
             itemReleaseDateTextView = (TextView) view.findViewById(R.id.itemReleaseDateTextView);
-            itemPosterImageView = (ImageView) view.findViewById(R.id.itemPosterImageView);
+        //    itemPosterImageView = (ImageView) view.findViewById(R.id.itemPosterImageView);
             itemRatingTextView = (TextView) view.findViewById(R.id.itemRatingTextView);
-            itemDescriptionTextView = (TextView) view.findViewById(R.id.text_description);
+      //      itemDescriptionTextView = (TextView) view.findViewById(R.id.text_description);
         }
 
         @Override

@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cryprocodes.mediator.Adapters.RssFeedListAdapter;
 import com.cryprocodes.mediator.Models.BaseMediaItem;
@@ -110,7 +109,7 @@ public class MediaItemFragment extends Fragment {
         //   mFetchFeedButton = (Button) findViewById(R.id.fetchFeedButton);
         mSwipeLayout = view.findViewById(R.id.swipeRefreshLayout);
         mFeedTitleTextView = view.findViewById(R.id.itemNameTextView);
-        mFeedDescriptionTextView = view.findViewById(R.id.text_description);
+      //  mFeedDescriptionTextView = view.findViewById(R.id.text_description);
         mFeedLinkTextView = view.findViewById(R.id.feedLink);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -215,6 +214,8 @@ public class MediaItemFragment extends Fragment {
             String title = null;
             String link = null;
             String description = null;
+            String pubDate = null;
+            List<String> categories = new ArrayList<>();
             boolean isItem = false;
             List<RssFeedModel> items = new ArrayList<>();
 
@@ -258,11 +259,15 @@ public class MediaItemFragment extends Fragment {
                         link = result;
                     } else if (name.equalsIgnoreCase("description")) {
                         description = result;
+                    } else if (name.equalsIgnoreCase("category")) {
+                        categories.add(result);
+                    } else if (name.equalsIgnoreCase("pubDate")) {
+                        pubDate = result;
                     }
 
-                    if (title != null && link != null && description != null) {
+                    if (title != null && link != null && description != null && pubDate != null && !categories.isEmpty()) {
                         if(isItem) {
-                            RssFeedModel item = new RssFeedModel(title, link, description);
+                            RssFeedModel item = new RssFeedModel(title, link, description, categories, pubDate);
                             items.add(item);
                         }
                         else {
@@ -274,6 +279,8 @@ public class MediaItemFragment extends Fragment {
                         title = null;
                         link = null;
                         description = null;
+                        pubDate = null;
+                        categories.clear();
                         isItem = false;
                     }
                 }
